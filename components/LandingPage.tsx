@@ -32,7 +32,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onFileSelect }) => {
             AI-Powered Virtual Try-On, <span className="text-brand-orange">Instantly.</span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-gray-700 mb-8">
-            Upload your photo, add a garment image or describe any clothing with a text prompt, and see yourself styled in seconds.
+            Upload your photo, try on multiple garments from images or text, change your background, generate Instagram captions, and yes—even anime-fy yourself!
           </p>
           <label 
             htmlFor="landing-upload-hero"
