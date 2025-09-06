@@ -1,0 +1,6 @@
+{
+  "name": "BananaFits",
+  "description": "BananaFits lets you instantly try on outfits from text prompts or real images, then see yourself styled in different worlds — from fashion runways to anime panels. Powered by NanoBanana, it blends creativity, fun, and shareability into one magical try-on experience.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
