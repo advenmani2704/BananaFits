@@ -5,7 +5,7 @@
 
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { generateLayeredOutfit, generateVariations, generateSceneFromImage, generateCaptions, refineImage, generateAnimeTransformation } from './services/geminiService';
+import { generateLayeredOutfit, generateVariations, generateSceneFromImage, generateCaptions, refineImage, generateAnimeTransformation, generateMultiAngleViews } from './services/geminiService';
 import Header from './components/Header';
 import Spinner from './components/Spinner';
 import TryOnPanel, { ClothingItem } from './components/TryOnPanel';
@@ -16,6 +16,7 @@ import RefinementModal from './components/RefinementModal';
 import { UndoIcon, RedoIcon, EyeIcon, BullseyeIcon } from './components/icons';
 import StartScreen from './components/StartScreen';
 import LandingPage from './components/LandingPage';
+import MultiAngleViewPanel from './components/MultiAngleViewPanel';
 
 // Helper to convert a data URL string to a File object
 const dataURLtoFile = (dataurl: string, filename: string): File => {
@@ -190,6 +191,29 @@ const App: React.FC = () => {
           setLoadingMessage('AI is working its magic...');
       }
   }, [currentImage, clothingItems]);
+
+  const handleGenerateMultiAngleViews = useCallback(async () => {
+    if (!currentImage) {
+        setError('No image available to generate views.');
+        return;
+    }
+
+    setIsLoading(true);
+    setLoadingMessage('Generating 360° views (this may take a minute)...');
+    setError(null);
+
+    try {
+        const { images, captions } = await generateMultiAngleViews(currentImage);
+        setVariationResults({ images, captions });
+    } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred.';
+        setError(`Failed to generate multi-angle views. ${errorMessage}`);
+        console.error(err);
+    } finally {
+        setIsLoading(false);
+        setLoadingMessage('AI is working its magic...');
+    }
+  }, [currentImage]);
 
   const handleGenerateAnime = useCallback(async (panelImage: File, posePrompt: string) => {
     if (!currentImage) {
@@ -476,6 +500,10 @@ const App: React.FC = () => {
                 isOutfitApplied={isOutfitApplied}
                 onConfirmOutfit={handleConfirmOutfit}
             />
+        </div>
+
+        <div className="w-full">
+            <MultiAngleViewPanel onGenerate={handleGenerateMultiAngleViews} isLoading={isLoading} />
         </div>
 
         <div className="w-full">

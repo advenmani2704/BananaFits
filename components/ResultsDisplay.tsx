@@ -22,7 +22,7 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ images, captions, onSel
 
   const gridContainerClasses = isSingleImage 
     ? "w-full max-w-2xl" 
-    : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full";
+    : `grid grid-cols-1 sm:grid-cols-2 ${images.length > 4 ? 'lg:grid-cols-3' : 'md:grid-cols-4'} gap-4 w-full`;
 
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col items-center gap-8 animate-fade-in">

@@ -252,6 +252,49 @@ OUTPUT: Return ONLY the final generated image.`;
 };
 
 /**
+ * Generates 6 multi-angle views of a person from an image.
+ * @param sourceImage The image of the person with the outfit.
+ * @returns A promise that resolves to an object containing image URLs and captions.
+ */
+export const generateMultiAngleViews = async (
+    sourceImage: File,
+): Promise<{ images: string[], captions:string[] }> => {
+    console.log(`Generating multi-angle views.`);
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+    const sourceImagePart = await fileToPart(sourceImage);
+
+    const angles = [0, 60, 120, 180, 240, 300];
+
+    const generationPromises = angles.map(angle => {
+        const prompt = `INSTRUCTIONS:
+1. Identify the person, their clothing, and their specific pose from the input image.
+2. Your task is to re-render this person from a different camera angle: a ${angle}-degree view. (0 degrees is the original front view, 180 degrees is the back view).
+3. **CRITICAL:** The person's pose (the position of their arms, legs, head, and torso) MUST remain completely static and identical to the original image. Imagine the person is a mannequin and you are just moving the camera around them. Do not change their expression or posture.
+4. The background must be a neutral, clean studio backdrop (e.g., light gray).
+5. The final output must be a photorealistic image.
+
+OUTPUT: Return ONLY the final generated image.`;
+        const textPart = { text: prompt };
+
+        return ai.models.generateContent({
+            model: 'gemini-2.5-flash-image-preview',
+            contents: { parts: [sourceImagePart, textPart] },
+        }).then(response => handleApiResponse(response, `multi-angle-view: ${angle} degrees`));
+    });
+
+    const images = await Promise.all(generationPromises);
+    const captions = [
+        "Serving looks from every angle! Which is your favorite? 👀 #OOTD #360view",
+        "The complete fit check. ✨ 0° to 300°.",
+        "From front to back, this outfit is a 10/10. #VirtualTryOn",
+        "Get the full picture with our 360° view. 📸 #AIstyling #FashionTech"
+    ];
+    
+    return { images, captions };
+};
+
+
+/**
  * Generates a new scene by placing a person from a source image into a background image.
  * @param personImage The image of the person.
  * @param backgroundImage The image to use as the new background.

@@ -72,7 +72,7 @@ const ContextPanel: React.FC<ContextPanelProps> = ({ onGenerate, isLoading }) =>
 
   return (
     <div className="w-full mt-6 bg-white/80 border-2 border-black p-4 flex flex-col items-center gap-4 animate-fade-in backdrop-blur-sm">
-      <h3 className="text-lg font-bold text-center text-gray-800">Step 2: Generate AI Photoshoot</h3>
+      <h3 className="text-lg font-bold text-center text-gray-800">Step 3: Generate AI Photoshoot</h3>
       <p className="text-md text-gray-700 -mt-2 text-center">Place the person in a new scene by describing it or uploading a background.</p>
 
        <div className="w-full max-w-sm bg-gray-200 border border-black p-1 flex items-center justify-center gap-1">
