@@ -32,7 +32,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onFileSelect }) => {
             AI-Powered Virtual Try-On, <span className="text-brand-orange">Instantly.</span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-gray-700 mb-8">
-            Upload your photo, try on multiple garments from images or text, change your background, generate Instagram captions, and yes—even anime-fy yourself!
+            Upload your photo, try on multiple garments from images or text, see a 360° view of your outfit, refine your pose, change your background, generate Instagram captions, and yes—even anime-fy yourself!
           </p>
           <label 
             htmlFor="landing-upload-hero"
@@ -49,11 +49,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onFileSelect }) => {
         <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-extrabold text-gray-900 mb-12">From Selfie to Story in Seconds</h2>
-            <img 
-              src="https://github.com/advenmani2704/snowflake_test_data/blob/main/Screenshot%202025-09-07%20at%2012.17.15%20AM.png?raw=true" 
-              alt="BananaFits workflow showing a person getting styled, changing backgrounds, and transforming into an anime character" 
-              className="w-full max-w-6xl mx-auto rounded-lg shadow-2xl border-4 border-black" 
-            />
+            <div className="flex flex-col items-center gap-8">
+                <img 
+                  src="https://github.com/advenmani2704/snowflake_test_data/blob/main/Screenshot%202025-09-07%20at%2012.17.15%20AM.png?raw=true" 
+                  alt="BananaFits workflow showing a person getting styled, changing backgrounds, and transforming into an anime character" 
+                  className="w-full max-w-6xl mx-auto rounded-lg shadow-2xl border-4 border-black" 
+                />
+                <img 
+                  src="https://github.com/advenmani2704/snowflake_test_data/blob/main/Screenshot%202025-09-08%20at%2010.10.12%20AM.png?raw=true" 
+                  alt="BananaFits workflow showing 360 degree views and pose refinement" 
+                  className="w-full max-w-6xl mx-auto rounded-lg shadow-2xl border-4 border-black" 
+                />
+            </div>
           </div>
         </section>
 
@@ -64,8 +71,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onFileSelect }) => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
               <div className="p-8 bg-gray-50 rounded-xl shadow-md transform hover:-translate-y-2 transition-transform duration-300">
                 <DressIcon className="w-12 h-12 mx-auto text-brand-orange mb-4" />
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Mix & Match Outfits</h3>
-                <p className="text-gray-700">Use product images or simple text prompts to try on any clothing item you can imagine.</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Full Outfit Control</h3>
+                <p className="text-gray-700">Try on any clothing, see it from every angle with a 360° view, and even refine your pose.</p>
               </div>
               <div className="p-8 bg-gray-50 rounded-xl shadow-md transform hover:-translate-y-2 transition-transform duration-300">
                 <GlobeIcon className="w-12 h-12 mx-auto text-brand-orange mb-4" />
